@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
+import AdminView from './AdminView';
 
 class HomePage extends Component {
   constructor() {
     super();
     this.state = {
       itemCurrentlyOnSale: 'Glue',
-      editSaleItem: true
+      editSaleItem: true,
+      productList: [
+        {
+          productName: 'Hammer',
+          description: "It's a hammer!",
+          price: 12.3
+        },
+        {
+          productName: 'Nail',
+          description: "It's a nail!",
+          price: 0.12
+        }
+      ]
     };
   }
 
@@ -14,6 +27,10 @@ class HomePage extends Component {
     this.setState({ editSaleItem });
   };
 
+  handleItemCurrentlyOnSaleChange = e => {
+    const itemCurrentlyOnSale = e.target.value;
+    this.setState({ itemCurrentlyOnSale: itemCurrentlyOnSale });
+  };
   render() {
     let buttonText = this.state.editSaleItem ? 'Hide' : 'Edit Sale Item';
 
@@ -28,9 +45,15 @@ class HomePage extends Component {
 
           {this.state.editSaleItem ? (
             <div>
-              <input type="text" />
+              <input
+                type="text"
+                value={this.state.itemCurrentlyOnSale}
+                onChange={this.handleItemCurrentlyOnSaleChange}
+              />
             </div>
           ) : null}
+
+          <AdminView productList={this.state.productList} />
         </div>
       </div>
     );
