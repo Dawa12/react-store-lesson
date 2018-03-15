@@ -5,6 +5,7 @@ class ProductList extends Component {
   state = {};
   render() {
     const productList = this.props.productList;
+    console.log('this.props', this.props);
     const productComponents = productList.map((product, index) => {
       return (
         <Product
