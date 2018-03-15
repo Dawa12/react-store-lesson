@@ -21,7 +21,11 @@ class HomePage extends Component {
       ]
     };
   }
-
+  addNewProductToProductList = product => {
+    const productList = [...this.state.productList];
+    productList.push(product);
+    this.setState({ productList });
+  };
   toggleEditSaleItem = () => {
     const editSaleItem = !this.state.editSaleItem;
     this.setState({ editSaleItem });
@@ -53,7 +57,10 @@ class HomePage extends Component {
             </div>
           ) : null}
 
-          <AdminView productList={this.state.productList} />
+          <AdminView
+            productList={this.state.productList}
+            addNewProductToProductList={this.addNewProductToProductList}
+          />
         </div>
       </div>
     );
